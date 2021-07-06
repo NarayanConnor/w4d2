@@ -2,13 +2,13 @@
 
 class Employee
 
-    attr_reader :name, :title, :salary, :boss
+    attr_reader :name, :title, :salary, :employee
 
-    def initialize (name, title, salary, boss)
+    def initialize (name, title, salary, employee=nil)
         @name= name
         @title= title
         @salary=salary
-        @boss=boss
+        @employee=employee
     end
 
     def bonus(multi)
@@ -19,25 +19,41 @@ end
 
 class Manager<Employee
 
-    attr_writer :employees
+    attr_accessor :employee
+    
 
-    def initialize(name, title, salary, boss=nil)
-        @employees=[]
-        super(name, title, salary, boss)
+    def initialize(name, title, salary, employee)
+        
+        super(name, title, salary, employee)
     end
 
    
-    def bonus(multi)
-        # bonus = (total salary of all sub-employees) * multiplier
+    def bonus(multi,employee)
+        sal=employee.emp_collect
+        sal.sum*multi
     end
+
+ 
+    def emp_collect
+        sal=[]
+        self.each do |emp|
+            return emp.salary if emp.employee.nil?
+            sal + emp.salary + emp_collect(emp)
+        end
+        sal
+    end
+
 
 end
 
-founder = Manager.new("ned", "founder", 1000000)
-to_m = Manager.new("darren", "ta manager", 1000000, founder)
-e1 = Employee.new("shawna", "ta", 12000, ta_m)
-e2 = Employee.new("david", "ta", 10000, ta_m)
 
-ned.bonus(5) # => 500_000
-darren.bonus(4) # => 88_000
-david.bonus(3) # => 30_000
+e1 = Employee.new("shawna", "ta", 12000)
+e2 = Employee.new("david", "ta", 10000)
+ta_m = Manager.new("darren", "ta manager", 1000000, [e1,e2])
+founder = Manager.new("ned", "founder", 1000000, [ta_m])
+
+
+
+founder.bonus(5,[ta_m]) # => 500_000
+ta_m.bonus(4,[e1,e2]) # => 88_000
+e2.bonus(3) # => 30_000
