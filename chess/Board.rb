@@ -1,9 +1,9 @@
-#require_relative ""
+require_relative "piece"
 
 class Board
 
     def initialize
-        @board=Array.new(8){Array.new(8,"x")}
+        @board=Array.new(8) { Array.new(8, Piece.new("red", 2))}
     end
 
     def render
@@ -22,7 +22,7 @@ class Board
         
     end
 
-    def move_piece(start_pos,end_pos)
+    def move_piece(color, start_pos,end_pos)
         riase if @board[start_pos[0]][start_pos[1]] == NullPiece
         riase if @board[end_pos[0]][end_pos[1]] != NullPiece #if it's our own player
         # not always true
@@ -32,3 +32,5 @@ end
 
 x= Board.new.render
 p x
+
+
