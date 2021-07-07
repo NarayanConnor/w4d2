@@ -24,8 +24,18 @@ Module Slideable
     end
 
     def grow_unblocked_moves_in_dir(dx, dy)
-    
-        self.grow_unblocked_moves_in_dir
+        possible_moves=[]
+        pos=self #start pos
+        row,col=pos #split up 
+
+        while true
+            row+=dx #1,-1,0  # add the direction to to the pos
+            col+=dy
+            possible_moves << [row,col] if valid_sqr(row,col)
+        end
+            
+        
+
 
         
         #x.color_otherplayer
