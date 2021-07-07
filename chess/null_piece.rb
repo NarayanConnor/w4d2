@@ -1,13 +1,19 @@
+require 'singleton'
 require_relative "piece"
 
-class Klass<Piece
+class NullPiece<Piece
     include Singleton
     def initialize
-        @null_piece = "null"
+        @color = nil
+        @symbol = nil
     end
 
-    def null_piece
-        super()
+    def move
+        raise "NP.move not implemented"
+    end
+
+    def symbol
+        raise "NP.symbol not implemented"
     end
 
 end

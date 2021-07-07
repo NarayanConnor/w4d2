@@ -1,8 +1,8 @@
-require_relative "Board"
+# require_relative "Board"
 
 class Piece
 
-    def initialize(color, board, pos)
+    def initialize(color=nil, board=nil, pos=nil)
         @color = color
         @pos = pos
         @board = board
