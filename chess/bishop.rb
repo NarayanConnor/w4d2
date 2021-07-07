@@ -5,7 +5,7 @@ class Bishop<Piece
 
 
     def symbol
-
+        '♝,♗'
     end
 
     private
