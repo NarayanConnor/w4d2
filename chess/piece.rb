@@ -1,6 +1,9 @@
 # require_relative "Board"
+# require_relative "null_piece"
 
 class Piece
+
+    attr_reader :pos, :color
 
     def initialize(color=nil, board=nil, pos=nil)
         @color = color
