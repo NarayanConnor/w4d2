@@ -6,6 +6,8 @@ class Rook<Piece
 
     def symbol
 
+       ' ♟︎ '
+
     end
 
     private
@@ -14,3 +16,7 @@ class Rook<Piece
         return horizantal
     end
 end
+
+x=Rook.new
+
+p x.symbol
